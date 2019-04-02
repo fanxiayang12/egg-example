@@ -3,14 +3,11 @@
 const Controller = require('egg').Controller;
 
 class NewsController extends Controller {
-  async list() {
+  async $list() {
     this.logger.info('list');
 
-    const data = await this.ctx.service.news.list();
-    const dataList = {
-      list: data
-    };
-    await this.ctx.render('news/list.tpl', dataList);
+    var data = await this.ctx.service.news.list(this.ctx.request.files[0], this.ctx.request.body.worksheet);
+    await this.ctx.render('news.tpl', data);
   }
 }
 

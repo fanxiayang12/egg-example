@@ -2,6 +2,9 @@
 
 'use strict';
 
+const os = require('os');
+const path = require('path');
+
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
@@ -20,22 +23,27 @@ module.exports = appInfo => {
       '.tpl': 'nunjucks',
     },
   };
-  config.eureka = {
-    instance: {
-      hostName: 'egg-eureka-app.local',
-      // secureVipAddress: '',  
-      // vipAddress: '',
-      homePageUrl: '/', // just path, will automatically join with ip and port or hostname if given
-      statusPageUrl: '/info', // just path, will automatically join with ip and port or hostname if given
-      healthCheckUrl: '/health' // just path, will automatically join with ip and port or hostname if given
+  config.cors = {
+    origin:'*',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
+  };
+  config.security = {
+    csrf: {
+      enable: false,
     },
-    registry: {
-      server: 'http://10.10.10.12:8761/eureka/apps/', // if use eureka cluster, then pass an (Array<url>, or String split by ',') eg: ['eureka1host/path','eureka2/path] or 'eureka1host/path, eureka2host/path'
-      heartbeatInterval: 5000,
-      registryFetchInterval: 1000,
-      //... other config follow eureka-js-client https://github.com/jquatier/eureka-js-client#advanced-configuration-options
-    }
-  }
+  };
+  config.multipart = {
+    mode: 'file',
+    tmpdir: path.join(os.tmpdir(), 'tmp', appInfo.name),
+    cleanSchedule: {
+      // run tmpdir clean job on every day 04:30 am
+      // cron style see https://github.com/eggjs/egg-schedule#cron-style-scheduling
+      cron: '0 30 4 * * *',
+    },
+    fileExtensions: [   // will append to whilelist
+      '.xlsx',
+    ],
+  };
 
   // add your middleware config here
   config.middleware = [];
@@ -43,6 +51,20 @@ module.exports = appInfo => {
   // add your user config here
   const userConfig = {
     appName: appInfo.name,
+    apiIp: 'http://10.10.10.12:8080/',
+    serviceId: {
+      commonService: 'emdata-common-service',
+      projectService: 'emdata-platform-keydefine',
+      etlMappingService: 'em-etl-mapping',
+      biService: 'emdata-bi-service',
+      commonNode: 'emdata-common-service-node',
+      weixinService: 'emdata-weixin-server',
+      emrService: 'emdata-emr-server',
+      standardService: 'emdata-standardize-service',
+      otpService: 'otp-service',
+      qaProjectService: 'emdata-qa-service',
+      datacheck: 'datacheck-service'
+    },
     pageSize: 5,
   };
 

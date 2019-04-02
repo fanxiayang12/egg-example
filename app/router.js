@@ -1,5 +1,8 @@
 'use strict';
 
+const fs = require('fs');
+const path = require('path');
+
 /**
  * @param {Egg.Application} app - egg application
  */
@@ -9,7 +12,6 @@ module.exports = app => {
     router,
     controller
   } = app;
-  // todo、约定路由
-  router.get('/', controller.home.index);
-  router.get('/news', controller.news.list);
+
+  app.logger.info('AUTO router');
 };

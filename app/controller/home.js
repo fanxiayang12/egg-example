@@ -4,8 +4,8 @@ const Controller = require('egg').Controller;
 
 class HomeController extends Controller {
   async index() {
-    const { ctx } = this;
-    ctx.body = 'hi, egg';
+    await this.service.home.list();
+    await this.ctx.render('home.tpl');
   }
 }
 
