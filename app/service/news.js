@@ -15,29 +15,27 @@ class NewsService extends Service {
             if (key.indexOf('D') != -1 && key != 'D1') {
                 var val = sheet[key].v;
 
-                var vals = [];
-                if (val.indexOf('/') != -1) {
-                    vals = val.split('/');
-                } else if (val.indexOf('||') != -1) {
-                    vals = val.split('||');
-                } else if (val.indexOf('&&') != -1) {
-                    vals = val.split('&&');
-                } else {
-                    vals = val.split('\n');
-                }
+                var vals = [val];
+                const validateSeparator = ['/', '||', '&&', '\n'];
+                validateSeparator.forEach(s => {
+                    if (val.indexOf(s) != -1) {
+                        vals = val.split(s);
+                    }
+                });
                 vals.forEach(v => {
                     if (!v) {
                         return;
                     }
 
                     let validate = true;
-                    if (v.indexOf('、') != -1) {
-                        validate = false;
-                    } else if (v.indexOf('.') != -1) {
-                        validate = false;
-                    } else if (v.indexOf('，') != -1) {
-                        validate = false;
-                    }
+                    let error = '';
+                    const inValidateCharacters = ['、', '.', '，', ' '];
+                    inValidateCharacters.forEach(c => {
+                        if (v.indexOf(c) != -1) {
+                            validate = false;
+                            error = '非法字符:' + (c == ' ' ? '空格' : c);
+                        }
+                    });
 
                     let obj = v.split('-');
                     let table;
@@ -55,7 +53,8 @@ class NewsService extends Service {
                         table: table,
                         filed: filed,
                         validate: validate,
-                        val: val
+                        val: val,
+                        error: error
                     });
                 });
             }
@@ -87,10 +86,13 @@ class NewsService extends Service {
 
         append(uniqArray, '去重结果');
 
+        var sortArray = _.sortBy(uniqArray, ['table', 'filed']);
+
         // xlsx.writeFile(workbookWrite, '/Users/alegria/Desktop/结果.xlsx');
 
         return {
             worksheetName,
+            sortArray,
             uniqArray,
             array
         }

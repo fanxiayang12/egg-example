@@ -20,7 +20,7 @@
     </script>
   </head>
   <body>
-    <form method="post" action="/news" enctype="multipart/form-data">
+    <form method="post" action="/news/list" enctype="multipart/form-data">
       <input type='text' name='worksheet' placeholder='请输入Sheet名称' />
       <input type='file' name='file' />
       <input type='submit' text='分析' id='submit' />
