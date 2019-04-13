@@ -17,5 +17,9 @@ module.exports = {
   autorouter: {
     enable: true,
     package: 'egg-router',
+  },
+  mysql: {
+    enable: true,
+    package: 'egg-mysql',
   }
 };
