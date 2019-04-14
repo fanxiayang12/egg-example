@@ -21,5 +21,9 @@ module.exports = {
   mysql: {
     enable: true,
     package: 'egg-mysql',
+  },
+  helper: {
+    enable: true,
+    package: 'egg-helper',
   }
 };
