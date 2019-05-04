@@ -80,7 +80,46 @@ module.exports = appInfo => {
     // 是否加载到 agent 上，默认关闭
     agent: false,
   };
-
+  config.swaggerdoc = {
+    apiInfo: {
+      title: appInfo.name,
+      description: appInfo.description,
+      version: appInfo.version,
+    },
+    routerMap: true
+  };
+  config.redis = {
+    client: {
+      port: 6379,          // Redis port
+      host: '127.0.0.1',   // Redis host
+      password: '',
+      db: 0
+    },
+  };
+  config.mongo = {
+    url: 'mongodb://10.10.10.45:20000',
+    dbName: 'emdataBI'
+  };
+  // config.mongo = {
+  //   // clients: {
+  //   //   emdataBI: {
+  //   //     host: '10.10.10.45',
+  //   //     port: '20000',
+  //   //     name: 'emdataBI',
+  //   //     // user: '',
+  //   //     // password: '',
+  //   //     options: {},
+  //   //   }
+  //   client: {
+  //     host: '10.10.10.45',
+  //     port: '20000',
+  //     name: 'emdataBI',
+  //     // user: '',
+  //     // password: '',
+  //     options: {},
+  //   }
+  // };
+  
   // add your middleware config here
   config.middleware = [];
 

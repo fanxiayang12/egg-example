@@ -3,7 +3,7 @@ const Service = require('egg').Service;
 const xlsx = require('xlsx');
 const _ = require('lodash');
 
-class NewsService extends Service {
+class SourceService extends Service {
     async list(file,worksheetName = '心衰住院字段表') {
         this.logger.info('');
 
@@ -99,4 +99,4 @@ class NewsService extends Service {
     }
 }
 
-module.exports = NewsService;
+module.exports = SourceService;

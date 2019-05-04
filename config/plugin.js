@@ -25,5 +25,17 @@ module.exports = {
   helper: {
     enable: true,
     package: 'egg-helper',
-  }
+  },
+  swaggerdoc: {
+    enable: true,
+    package: 'egg-swagger-doc',
+  },
+  redis: {
+    enable: true,
+    package: 'egg-redis',
+  },
+  mongo: {
+    enable: true,
+    package: 'egg-mongo',
+  },
 };
