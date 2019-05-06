@@ -6,6 +6,11 @@ class DocService extends Service {
 
         return data;
     }
+    async findById(id) {
+        let data = await this.ctx.helper.dao.doc.findById(id);
+
+        return data;
+    }
 }
 
 module.exports = DocService;

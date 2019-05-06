@@ -16,20 +16,6 @@ class HomeController extends Controller {
 
     await this.ctx.render('home.tpl');
   }
-
-  async doc() {
-    // mongo
-    let pager = await this.service.doc.pageList(1, 2);
-
-    const {
-      ctx
-    } = this;
-    const {
-      helper
-    } = ctx;
-
-    ctx.json(helper.api.data(pager));
-  }
 }
 
 module.exports = HomeController;
