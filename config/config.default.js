@@ -5,14 +5,7 @@
 const os = require('os');
 const path = require('path');
 
-/**
- * @param {Egg.EggAppInfo} appInfo app info
- */
 module.exports = appInfo => {
-  /**
-   * built-in config
-   * @type {Egg.EggAppConfig}
-   **/
   const config = {};
 
   // use for cookie sign key, should change to your own and keep security
@@ -100,25 +93,6 @@ module.exports = appInfo => {
     url: 'mongodb://10.10.10.45:20000',
     dbName: 'emdataBI'
   };
-  // config.mongo = {
-  //   // clients: {
-  //   //   emdataBI: {
-  //   //     host: '10.10.10.45',
-  //   //     port: '20000',
-  //   //     name: 'emdataBI',
-  //   //     // user: '',
-  //   //     // password: '',
-  //   //     options: {},
-  //   //   }
-  //   client: {
-  //     host: '10.10.10.45',
-  //     port: '20000',
-  //     name: 'emdataBI',
-  //     // user: '',
-  //     // password: '',
-  //     options: {},
-  //   }
-  // };
   
   // add your middleware config here
   config.middleware = [];
@@ -140,7 +114,7 @@ module.exports = appInfo => {
       qaProjectService: 'emdata-qa-service',
       datacheck: 'datacheck-service'
     },
-    pageSize: 5,
+    pageSize: 10,
   };
 
   return {
