@@ -52,6 +52,12 @@ module.exports = appInfo => {
         // 数据库名
         database: 'emdata',
       },
+      em_term_dev: {
+        database: 'em_term_dev'
+      },
+      em_term: {
+        database: 'em_term'
+      }
       // ...
     },
     // 所有数据库配置的默认值
@@ -91,7 +97,7 @@ module.exports = appInfo => {
   };
   config.mongo = {
     url: 'mongodb://10.10.10.45:20000',
-    dbName: 'emdataBI'
+    dbName: 'doc_pool_prod'
   };
   
   // add your middleware config here
