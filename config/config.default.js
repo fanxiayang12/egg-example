@@ -16,6 +16,10 @@ module.exports = appInfo => {
       '.tpl': 'nunjucks',
     },
   };
+  config.static = {
+    prefix: '/',
+    // dir: [path.join(app.baseDir, 'public'), path.join(app.baseDir, 'publicData')]// 多静态文件入口
+  };
   config.cors = {
     origin:'*',
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
@@ -96,8 +100,8 @@ module.exports = appInfo => {
     },
   };
   config.mongo = {
-    url: 'mongodb://10.10.10.45:20000',
-    dbName: 'doc_pool_prod'
+    url: 'mongodb://127.0.0.1:27017',
+    dbName: 'thrid'
   };
   
   // add your middleware config here
